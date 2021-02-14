@@ -1,3 +1,6 @@
+body{
+  font: 400 14px Roboto, sans-serif;
+}
 .App {
   text-align: center;
 }
