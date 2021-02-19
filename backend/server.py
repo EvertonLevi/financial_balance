@@ -1,14 +1,15 @@
-from flask import Flask, request, jsonify
-from flask_restful import Resource, Api
-from sqlalchemy import create_engine
 from datetime import datetime
 from random import randrange
-from json import dumps
+
+from flask import Flask, request, jsonify
+from flask_restful import Resource, Api
+from flask_cors import CORS
+from sqlalchemy import create_engine
 
 db_connect = create_engine('sqlite:///db.db')
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
-
 
 class User(Resource):
 
@@ -27,6 +28,7 @@ class User(Resource):
 
 class Launchs(Resource):
 
+    @app.route('/', methods=['GET'])
     def get(self):
         conn = db_connect.connect()
         query = conn.execute("select * from launch")
@@ -80,4 +82,4 @@ api.add_resource(Launchs, '/launchs')
 api.add_resource(LaunchById, '/launchs/<id>')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0")
