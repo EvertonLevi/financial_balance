@@ -1,0 +1,14 @@
+backend/.vscode/
+
+frontend/package-lock.json
+
+backend/db.db
+
+**.png
+
+**.pyc
+
+backend/db.sqlite
+
+backend/db.sqlite-journal
+
